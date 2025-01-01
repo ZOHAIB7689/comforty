@@ -38,7 +38,7 @@ const ProductCard:FC<{Item : Products}> = ({ Item }) => {
         <div className='flex justify-between w-full' >
           <h1 className=" text-xl">{Item.title}</h1>
         <Button className=" font-bold" variant={"ghost"} onClick={handleAdToCart}>
-            <IoCartOutline size={32}/>
+            <IoCartOutline size={32} />
         </Button>
           <p className="text-gray-300">{Item.description}</p>
         </div>
