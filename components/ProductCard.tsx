@@ -6,7 +6,6 @@ import { urlFor } from '@/sanity/lib/image'
 import { FC } from 'react'
 import { IoCartOutline } from 'react-icons/io5';
 import Image from 'next/image';
-import { Button } from './ui/button';
 
 interface Products {
   _id: string;
@@ -30,22 +29,31 @@ const ProductCard:FC<{Item : Products}> = ({ Item }) => {
       await res.json()
     }
   return (
-    <div> 
-      <div className=" border bg-gray-300 border-zinc-700 rounded-lg">
-        <div className="w-full h-3/4">
-          <Image src={urlFor(Item.image).url()} alt={Item.title} height={300} width={300} />
-        </div>
-        <div className='flex justify-between w-full' >
-          <h1 className=" text-xl">{Item.title}</h1>
-        <Button className=" font-bold" variant={"ghost"} onClick={handleAdToCart}>
-            <IoCartOutline size={32} />
-        </Button>
+    <div>
+      <div className=" border rounded-lg cursor-pointer hover:bg-zinc-50 duration-200 hover:-translate-y-2">
+        <div className="w-full h-3/4 overflow-hidden">
+          <Image
+            src={urlFor(Item.image).url()}
+            alt={Item.title}
+            height={200}
+            width={200}
+            className='hover:scale-110 duration-200'
+          />
+        </div >
+        <div className="flex m-2 justify-between w-full">
+          <h1 className=" text-sm">{Item.title}</h1>
+          <button
+            className=" hover:bg-[#029FAE] font-bold"
+            onClick={handleAdToCart}
+          >
+            <IoCartOutline size={24} />
+          </button>
           <p className="text-gray-300">{Item.description}</p>
         </div>
-          <p className="text-lg font-semibold mt-2">${Item.price}</p>
+        <p className="text-lg p-2 font-bold mt-2">${Item.price}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default ProductCard;

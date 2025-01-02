@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db , cartTable } from "@/lib/drizzle"
 import { cookies } from "next/headers";
 import { v4 as uuid } from "uuid";
 
-export const GET = async () => {
+export const GET = async (request:NextRequest) => {
   try {
     const res = await db.select().from(cartTable)
     return NextResponse.json({message:"Database connected succesfully" , res})
@@ -14,15 +14,15 @@ export const GET = async () => {
   }
 };
 
-export const POST = async(request: Request) => {
+export const POST = async(request: NextRequest) => {
 
   const req = await request.json()
   const uid = uuid()
   const setCookies = await cookies()
-  const userIdCookie = await setCookies.get("user_id")
+  const userIdCookie = setCookies.get("user_id")
   
   if (!userIdCookie) {
-      await setCookies.set("user_id", uid)
+      setCookies.set("user_id", uid)
   }
 
   try {
