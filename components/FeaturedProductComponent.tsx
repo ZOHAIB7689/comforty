@@ -44,7 +44,7 @@ export default async function FeaturedProductComponent() {
         <h1 className="text-4xl font-semibold">Featured Products</h1>
       </div> 
       <div className="flex justify-between flex-col md:flex-row  flex-wrap mt-5">
-        {data.map((product, index) => (
+        {data.map((product,) => (
           <ProductCard Item={product} key={product._id} />
         ))}
       </div>
