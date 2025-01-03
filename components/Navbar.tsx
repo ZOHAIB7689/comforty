@@ -9,7 +9,7 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="border-b-2 border bg-gray-200">
+    <div className="border-b-2 bg-gray-200">
       {/* Section 1: Top Bar */}
       <div className="md:px-56 hidden text-gray-200 md:flex justify-between items-center px-4 py-2 bg-[#272343]">
         <div className="text-sm">✔ Free Shipping On All Orders Over $50</div>

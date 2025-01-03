@@ -13,7 +13,7 @@ const product = defineType({
     {
       name: "discription",
       type: "string",
-      title: "Product  Description",
+      title: "Product Description",
     },
     {
       name: "image",
@@ -27,7 +27,7 @@ const product = defineType({
     },
     {
       name: "discount",
-      title: " Before Discount",
+      title: "Before Discount",
       type: "number",
     },
     {
@@ -36,9 +36,21 @@ const product = defineType({
       type: "reference",
       to: [{ type: "category" }],
     },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "discription",
+        maxLength: 200, // Optional: Limit slug length
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9-]/g, ""),
+      },
+    },
   ],
 });
-
-
 
 export default product;

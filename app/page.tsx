@@ -1,5 +1,5 @@
-
-export default async function Home() {
+import Home from "./home/page";
+export default async function Page() {
   return (
     <div><Home/></div>
 );

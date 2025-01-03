@@ -45,13 +45,13 @@ export default async function TopCategories() {
           {data.map((category, index) => (
             <Card key={index} className="overflow-hidden cursor-pointer">
               <CardHeader className="p-0">
-                <Image
+                <div className="bg-black rounded-md"><Image
                   src={urlFor(category.image).url()}
                   alt={category.title}
                   width={300}
                   height={200}
-                  className="w-full h-auto hover:scale-105 duration-200 object-cover "
-                />
+                  className="w-full h-auto hover:opacity-70 hover:scale-105 duration-200 object-cover "
+                /></div>
               </CardHeader>
               <CardContent className="p-4 -translate-x-1">
                 <h3 className="text-md font-medium text-gray-800">
