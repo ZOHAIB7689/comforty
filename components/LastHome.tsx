@@ -9,12 +9,12 @@ export const getProductData = async () => {
     await client.fetch(`*[_type=='product']{
     _id,
     title,
+    slug,
     description,
     image,
     discount, 
     price,
-    category -> {title}
-  }`);
+    category -> {title} }`);
   return response;
 };
 
@@ -25,6 +25,7 @@ interface Product {
   title: string;
   description: string;
   image: Image;
+  slug: string; 
   price: number;
   discount: number;
   category: {

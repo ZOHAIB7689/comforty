@@ -12,7 +12,7 @@ export default function Home() {
         <FurnitureCollection/>
         <Logos/>
         <FeaturedProductComponent/>
-      <TopCategories/>s
+      <TopCategories/>
       <ProductShowcase/>
       <LastHome/>
     </div>

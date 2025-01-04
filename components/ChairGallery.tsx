@@ -16,6 +16,7 @@ export const getProductData = async (): Promise<Product[]> => {
     await client.fetch(`*[_type=='product']{
     _id,
     image
+    slug
   }`);
 
   // Ensure we return an empty array if the response is undefined or null

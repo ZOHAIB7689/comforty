@@ -10,6 +10,7 @@ export const getProductData = async () => {
         description,
         image,
         discount, 
+        slug,
         price,
         category -> {title }
     }`);

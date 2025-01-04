@@ -8,6 +8,7 @@ export const getProductData = async () => {
   const response = await client.fetch(`*[_type=='product' && category-> name == 'main']{
     _id,
     title,
+    slug,
     description,
     image,
     discount, 
@@ -21,6 +22,7 @@ const builder = imageUrlBuilder(client);
 
 interface Product {
   _id: string;
+  slug: string;
   title: string;
   description: string;
   image: Image;
