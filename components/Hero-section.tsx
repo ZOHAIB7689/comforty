@@ -9,7 +9,7 @@ const FurnitureCollection = () => {
           WELCOME TO CHAIRY
         </p>
         <h1 className="text-2xl md:text-5xl font-bold leading-relaxed">
-          Best Furniture <br /> Collection For Your <br /> Interior.
+           Best Furniture <br /> Collection For Your <br /> Interior.
         </h1>
         <button className="flex items-center bg-[#029FAE] text-white px-8 py-3 rounded-lg hover:bg-[#027a86] transition duration-300 shadow-lg">
           Shop Now

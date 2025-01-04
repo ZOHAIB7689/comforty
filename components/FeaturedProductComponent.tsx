@@ -1,17 +1,18 @@
-import React from 'react'
-import ProductCard from './ProductCard'
+import React from "react";
+import ProductCard from "./ProductCard";  // Import your ProductCard component
 import { client } from "@/lib/Client";
 import imageUrlBuilder from "@sanity/image-url";
 import { Image } from "sanity";
 
+// Fetch product data from the Sanity API
 export const getProductData = async () => {
-  const response = await client.fetch(`*[_type=='product' && category-> name == 'main']{
+  const response = await client.fetch(`*[_type=='product' && category->name == 'main']{
     _id,
     title,
-    slug,
+    "slug": slug.current,
     description,
     image,
-    discount, 
+    discount,
     price,
     category -> {title}
   }`);
@@ -20,6 +21,7 @@ export const getProductData = async () => {
 
 const builder = imageUrlBuilder(client);
 
+// Define the interface for a product
 interface Product {
   _id: string;
   slug: string;
@@ -33,23 +35,27 @@ interface Product {
   };
 }
 
-// Fixed urlFor function
+// Function for generating image URLs
 function urlFor(source: Image) {
   return builder.image(source);
 }
 
-export default async function FeaturedProductComponent() {
+// FeaturedProductComponent to render the list of featured products
+const FeaturedProductComponent: React.FC = async () => {
   const data: Product[] = await getProductData();
+
   return (
     <div className="mt-8">
       <div>
         <h1 className="text-4xl font-semibold">Featured Products</h1>
-      </div> 
-      <div className="flex justify-between flex-col md:flex-row  flex-wrap mt-5">
-        {data.map((product,) => (
-          <ProductCard Item={product} key={product._id} />
+      </div>
+      <div className="flex justify-between flex-col md:flex-row flex-wrap mt-5">
+        {data.map((product) => (
+          <ProductCard Item={product} key={product._id} />  // Pass product data to ProductCard
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default FeaturedProductComponent;
