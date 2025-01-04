@@ -6,7 +6,7 @@ import { Image } from "sanity";
 
 export const getProductData = async () => {
   const response =
-    await client.fetch(`*[_type=='product' category -> 'main' 'top']{
+    await client.fetch(`*[_type=='product' ]{
     _id,
     title,
     slug,
