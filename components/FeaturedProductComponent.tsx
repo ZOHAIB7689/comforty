@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";  // Import your ProductCard component
 import { client } from "@/lib/Client";

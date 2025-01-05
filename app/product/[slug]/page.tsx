@@ -5,25 +5,35 @@ import { Card } from "@/components/ui/card";
 
 // Fetch the product by slug
 async function getProduct(slug: string) {
-  const query = `*[_type == "product" && slug.current == $slug][0] {
-  _id,  
-  title,
-    price,
-    description,
-    image
-  }`;
-  return client.fetch(query, { slug });
+  try {
+    const query = `*[_type == "product" && slug.current == $slug][0] {
+      _id,  
+      title,
+      price,
+      description,
+      image
+    }`;
+    return await client.fetch(query, { slug });
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    return null;
+  }
 }
 
 // Generate static paths
 export async function generateStaticParams() {
-  const query = `*[_type == "product"] {
-    "slug": slug.current
-  }`;
-  const products = await client.fetch(query);
-  return products.map((product: { slug: string }) => ({
-    params: { slug: product.slug },
-  }));
+  try {
+    const query = `*[_type == "product"] {
+      "slug": slug.current
+    }`;
+    const products = await client.fetch(query);
+    return (products || []).map((product: { slug: string }) => ({
+      slug: product.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params:", error);
+    return [];
+  }
 }
 
 export default async function ProductPage({

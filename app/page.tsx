@@ -7,7 +7,7 @@ import Logos from "@/components/logos";
 import FeaturedProductComponent from "@/components/FeaturedProductComponent";
 
 // FeaturedProductComponent to render the list of featured products
-const Page: React.FC = async () => {
+const Page= () => {
 
   return (
     <div className="mt-8">
