@@ -31,6 +31,10 @@ const CartItem: React.FC<CartItemProps> = ({ product }) => {
       console.error("Failed to add to cart:", error);
     }
   };
+  if (!product) {
+  return <div>Product not found</div>;
+}
+
 
   return (
     <div className="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
