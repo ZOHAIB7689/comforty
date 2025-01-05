@@ -34,7 +34,7 @@ const urlFor = (source: SanityImage) => builder.image(source).url();
 export default async function CartPage() {
   try {
     const cookiesData = await cookies(); 
-    const userId = cookiesData.get("user_id")?.value;
+    const userId = cookiesData.get("user_id")?.value|| ""
 
     if (!userId) {
       return (
