@@ -1,7 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";  // Import your ProductCard component
 import { client } from "@/lib/Client";
-import imageUrlBuilder from "@sanity/image-url";
 import { Image } from "sanity";
 
 // Fetch product data from the Sanity API

@@ -15,13 +15,6 @@ type Product = {
   price: number;
 };
 
-type CartItem = {
-  id: string;
-  product_id: string;
-  user_id: string;
-  quantity: number;
-};
-
 // GROQ query to fetch product details
 const fetchProductDetails = async (productIds: string[]): Promise<Product[]> => {
   const query = `*[_type == "product" && _id in $productIds]{
@@ -159,13 +152,13 @@ export default async function CartPage() {
         </div>
       </div>
     );
-  } catch (error) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <p className="text-lg font-semibold text-red-500">
-          An error occurred: 
-        </p>
-      </div>
-    );
-  }
-}
+ } catch (error) {
+  const errorMessage = error instanceof Error ? error.message : String(error);
+  return (
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <p className="text-lg font-semibold text-red-500">
+        An error occurred: {errorMessage}
+      </p>
+    </div>
+  );
+}}
