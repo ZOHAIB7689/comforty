@@ -1,4 +1,3 @@
-import ProductShowcase from '@/components/ChairGallery'
 import FeaturedProductComponent from '@/components/FeaturedProductComponent'
 import FurnitureCollection from '@/components/Hero-section'
 import LastHome from '@/components/LastHome'
@@ -13,7 +12,6 @@ export default function Home() {
         <Logos/>
         <FeaturedProductComponent/>
       <TopCategories/>
-      <ProductShowcase/>
       <LastHome/>
     </div>
   )
