@@ -20,18 +20,18 @@ export interface Products {
   };
 }
 
+export const handleAddToCart = async (productId: string) => {
+  const res = await fetch("/api/cart", {
+    method: "POST",
+    body: JSON.stringify({
+      product_id: productId,
+    }),
+  });
+  await res.json();
+};
+
 const ProductCard: FC<{ Item: Products }> = ({ Item }) => {
   const router = useRouter(); // Initialize router
-
-  const handleAddToCart = async () => {
-    const res = await fetch("/api/cart", {
-      method: "POST",
-      body: JSON.stringify({
-        product_id: Item._id,
-      }),
-    });
-    await res.json();
-  };
 
   const handleNavigation = () => {
     router.push(`/product/${Item.slug}`); // Navigate to the product's slug page
@@ -57,7 +57,7 @@ const ProductCard: FC<{ Item: Products }> = ({ Item }) => {
             className="mr-2 p-2 rounded-lg duration-200 hover:bg-[#029FAE] font-bold"
             onClick={(e) => {
               e.stopPropagation(); // Prevent navigation when clicking the button
-              handleAddToCart();
+              handleAddToCart(Item._id); // Pass product ID to handleAddToCart
             }}
           >
             <IoCartOutline size={24} />

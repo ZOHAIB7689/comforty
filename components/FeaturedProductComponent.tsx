@@ -19,7 +19,6 @@ export const getProductData = async () => {
   return response;
 };
 
-const builder = imageUrlBuilder(client);
 
 // Define the interface for a product
 interface Product {
@@ -33,11 +32,6 @@ interface Product {
   category: {
     title: string;
   };
-}
-
-// Function for generating image URLs
-function urlFor(source: Image) {
-  return builder.image(source);
 }
 
 // FeaturedProductComponent to render the list of featured products

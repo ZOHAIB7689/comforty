@@ -1,7 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 import { client } from "@/lib/Client";
-import imageUrlBuilder from "@sanity/image-url";
 import { Image } from "sanity";
 
 export const getProductData = async () => {
@@ -18,7 +17,6 @@ export const getProductData = async () => {
   return response;
 };
 
-const builder = imageUrlBuilder(client);
 
 interface Product {
   _id: string;
@@ -33,10 +31,6 @@ interface Product {
   };
 }
 
-// Fixed urlFor function
-function urlFor(source: Image) {
-  return builder.image(source);
-}
 
 export default async function LastHome() {
   const data: Product[] = await getProductData();

@@ -3,7 +3,7 @@ import { db , cartTable } from "@/lib/drizzle"
 import { cookies } from "next/headers";
 import { v4 as uuid } from "uuid";
 
-export const GET = async (request:NextRequest) => {
+export const GET = async () => {
   try {
     const res = await db.select().from(cartTable)
     return NextResponse.json({message:"Database connected succesfully" , res})
