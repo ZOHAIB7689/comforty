@@ -27,8 +27,10 @@ export async function generateStaticParams() {
       "slug": slug.current
     }`;
     const products = await client.fetch(query);
-    return (products || []).map((product: { slug: string }) => ({
-      slug: product.slug,
+
+    // Ensure slug is a string and handle undefined cases
+    return (products || []).map((product: { slug: string | undefined }) => ({
+      slug: product.slug || "",
     }));
   } catch (error) {
     console.error("Error generating static params:", error);
@@ -41,8 +43,23 @@ export default async function ProductPage({
 }: {
   params: { slug: string };
 }) {
+  // Validate the slug
+  if (!params?.slug || typeof params.slug !== "string") {
+    console.error("Invalid slug parameter:", params.slug);
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Card className="p-6">
+          <h2 className="text-xl font-semibold">Invalid Product</h2>
+          <p className="text-gray-600">The slug parameter is missing or invalid.</p>
+        </Card>
+      </div>
+    );
+  }
+
+  // Fetch the product
   const product = await getProduct(params.slug);
 
+  // Handle product not found
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
