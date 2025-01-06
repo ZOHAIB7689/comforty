@@ -28,16 +28,21 @@ export async function generateStaticParams() {
     }`;
     const products = await client.fetch(query);
 
-    // Ensure slug is a string and handle undefined cases
-    return (products || []).map((product: { slug: string | undefined }) => ({
-      slug: product.slug || "",
-    }));
+    console.log("Static params generated:", products); // Debugging log
+
+    // Filter out invalid or missing slugs
+    return (products || [])
+      .filter((product: { slug?: string }) => product?.slug)
+      .map((product: { slug: string }) => ({
+        slug: product.slug,
+      }));
   } catch (error) {
     console.error("Error generating static params:", error);
     return [];
   }
 }
 
+// Product Page
 export default async function ProductPage({
   params,
 }: {
@@ -56,10 +61,10 @@ export default async function ProductPage({
     );
   }
 
-  // Fetch the product
+  // Fetch the product using the slug
   const product = await getProduct(params.slug);
 
-  // Handle product not found
+  // Handle case where the product is not found
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -71,10 +76,10 @@ export default async function ProductPage({
     );
   }
 
+  // Render the product details
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Pass product as props to the CartItem Client Component */}
         <CartItem product={product} />
       </div>
     </div>
